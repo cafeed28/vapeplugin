@@ -1,2 +1,2 @@
 # vapeplugin
-VapePlugn 😈😈😈
+VapePlugin 😈😈😈
