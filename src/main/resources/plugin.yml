@@ -1,0 +1,20 @@
+name: VapePlugin
+version: '${project.version}'
+main: com.cafeed28.vapeplugin.VapePlugin
+api-version: 1.16
+prefix: VAPE
+authors: [ cafeed28 ]
+description: Vape Plugin
+commands:
+  vape:
+    description: Get vape command.
+    usage: /<command> <id>
+  liquid:
+    description: Get liquid command.
+    usage: /<command> <id>
+  fill:
+    description: Fill vape command.
+    usage: /<command> <liquid-name>
+  shop:
+    description: Open shop GUI command.
+    usage: /<command> <type>
