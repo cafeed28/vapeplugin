@@ -2,10 +2,9 @@ package com.cafeed28.vapeplugin.commands;
 
 import com.cafeed28.vapeplugin.Utils;
 import com.cafeed28.vapeplugin.VapeItem;
-import com.cafeed28.vapeplugin.VapePlugin;
-import com.cafeed28.vapeplugin.liquids.BaseLiquid;
-import com.cafeed28.vapeplugin.liquids.EmptyLiquid;
-import com.cafeed28.vapeplugin.vapes.BaseVape;
+import com.cafeed28.vapeplugin.types.BaseLiquid;
+import com.cafeed28.vapeplugin.types.BaseVape;
+import com.cafeed28.vapeplugin.types.TypesManager;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -16,18 +15,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static com.cafeed28.vapeplugin.Utils.*;
-import static java.util.stream.Collectors.joining;
 
 public class FillCommand implements CommandExecutor {
     public final ArrayList<BaseVape> vapeTypes;
     public final ArrayList<BaseLiquid> liquidTypes;
 
     public FillCommand() {
-        vapeTypes = VapePlugin.getInstance().vapes;
-        liquidTypes = VapePlugin.getInstance().liquids;
+        vapeTypes = TypesManager.getVapes();
+        liquidTypes = TypesManager.getLiquids();
     }
 
     @Override
@@ -67,7 +64,7 @@ public class FillCommand implements CommandExecutor {
             try {
                 BaseLiquid tempLiquid = (BaseLiquid) decodeObject(liquidData);
 
-                if (Integer.parseInt(args[0]) == tempLiquid.id + 1) {
+                if (Integer.parseInt(args[0]) == tempLiquid.id) {
                     liquid = tempLiquid;
                     pos = i;
                     break;

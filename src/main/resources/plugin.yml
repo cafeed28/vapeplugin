@@ -9,9 +9,11 @@ commands:
   vape:
     description: Get vape command.
     usage: /<command> <id>
+    permission: op
   liquid:
     description: Get liquid command.
     usage: /<command> <id>
+    permission: op
   fill:
     description: Fill vape command.
     usage: /<command> <liquid-name>

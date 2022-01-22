@@ -1,7 +1,8 @@
 package com.cafeed28.vapeplugin;
 
-import com.cafeed28.vapeplugin.liquids.BaseLiquid;
-import com.cafeed28.vapeplugin.vapes.BaseVape;
+import com.cafeed28.vapeplugin.types.BaseLiquid;
+import com.cafeed28.vapeplugin.types.BaseVape;
+import com.cafeed28.vapeplugin.types.TypesManager;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
@@ -22,8 +23,8 @@ public class ShopManager implements Listener {
     public final ArrayList<BaseLiquid> liquidTypes;
 
     public ShopManager() {
-        vapeTypes = VapePlugin.getInstance().vapes;
-        liquidTypes = VapePlugin.getInstance().liquids;
+        vapeTypes = TypesManager.getVapes();
+        liquidTypes = TypesManager.getLiquids();
     }
 
     @EventHandler

@@ -6,7 +6,7 @@
 
     <groupId>com.cafeed28</groupId>
     <artifactId>VapePlugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>VapePlugin</name>
@@ -88,6 +88,11 @@
             <artifactId>annotations</artifactId>
             <version>RELEASE</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.12</version>
         </dependency>
     </dependencies>
 </project>

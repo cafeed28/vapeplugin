@@ -1,8 +1,8 @@
 package com.cafeed28.vapeplugin.commands;
 
 import com.cafeed28.vapeplugin.VapeItem;
-import com.cafeed28.vapeplugin.VapePlugin;
-import com.cafeed28.vapeplugin.vapes.BaseVape;
+import com.cafeed28.vapeplugin.types.BaseVape;
+import com.cafeed28.vapeplugin.types.TypesManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,7 +18,7 @@ public class VapeCommand implements CommandExecutor {
     public final ArrayList<BaseVape> vapeTypes;
 
     public VapeCommand() {
-        vapeTypes = VapePlugin.getInstance().vapes;
+        vapeTypes = TypesManager.getVapes();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.cafeed28.vapeplugin;
 
-import com.cafeed28.vapeplugin.liquids.BaseLiquid;
+import com.cafeed28.vapeplugin.types.BaseLiquid;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.Color;
 import org.bukkit.Material;

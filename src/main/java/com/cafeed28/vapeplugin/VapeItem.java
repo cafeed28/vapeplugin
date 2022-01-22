@@ -1,6 +1,6 @@
 package com.cafeed28.vapeplugin;
 
-import com.cafeed28.vapeplugin.vapes.BaseVape;
+import com.cafeed28.vapeplugin.types.BaseVape;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
@@ -73,8 +73,7 @@ public class VapeItem implements Listener {
             int duration = vape.currentLiquid.effectsDuration.get(i) * 20;
             boolean onlyPerfect = vape.currentLiquid.effectsOnlyPerfect.get(i);
 
-            if (onlyPerfect && isPerfect) continue;
-            else if (onlyPerfect) continue;
+            if (!isPerfect && onlyPerfect) continue;
 
             p.addPotionEffect(effect.createEffect(duration, amplifier));
         }
@@ -142,23 +141,20 @@ public class VapeItem implements Listener {
                         int maxHoldTime = vapeInfo.getMaxHoldTime();
                         long holdTime = System.currentTimeMillis() - startHoldingTime;
 
-                        String actionBarText = String.format(
-                                ChatColor.WHITE + "Затягиваемся... "
-                                        + ChatColor.GOLD + "¦"
-                                        + ChatColor.WHITE + " %02d.%02d сек",
-                                TimeUnit.MILLISECONDS.toSeconds(holdTime),
-                                TimeUnit.MILLISECONDS.toMillis(holdTime));
+                        if (holdTime < maxHoldTime) {
+                            float progress = (float)holdTime / (float)maxHoldTime;
+                            StringBuilder sb = new StringBuilder();
+                            int length = 45;
+                            for (int i = 0; i < length; i++) {
+                                if (i < length * progress) {
+                                    sb.append("_");
+                                }
+                            }
 
-                        p.spigot().sendMessage(ChatMessageType.ACTION_BAR,
-                                TextComponent.fromLegacyText(actionBarText));
-
-                        if (holdTime >= maxHoldTime) {
-                            actionBarText = String.format(
-                                    ChatColor.RED + "Слишком долго затягивался! "
-                                            + ChatColor.GOLD + "¦"
-                                            + ChatColor.WHITE + " %02d.%02d сек",
-                                    TimeUnit.MILLISECONDS.toSeconds(holdTime),
-                                    TimeUnit.MILLISECONDS.toMillis(holdTime));
+                            p.spigot().sendMessage(ChatMessageType.ACTION_BAR,
+                                    TextComponent.fromLegacyText(sb.toString()));
+                        } else if (holdTime >= maxHoldTime) {
+                            String actionBarText = ChatColor.RED + "Слишком долго затягивался!";
 
                             p.spigot().sendMessage(ChatMessageType.ACTION_BAR,
                                     TextComponent.fromLegacyText(actionBarText));

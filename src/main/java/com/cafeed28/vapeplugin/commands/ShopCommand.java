@@ -2,10 +2,9 @@ package com.cafeed28.vapeplugin.commands;
 
 import com.cafeed28.vapeplugin.LiquidItem;
 import com.cafeed28.vapeplugin.VapeItem;
-import com.cafeed28.vapeplugin.VapePlugin;
-import com.cafeed28.vapeplugin.liquids.BaseLiquid;
-import com.cafeed28.vapeplugin.liquids.EmptyLiquid;
-import com.cafeed28.vapeplugin.vapes.BaseVape;
+import com.cafeed28.vapeplugin.types.BaseLiquid;
+import com.cafeed28.vapeplugin.types.BaseVape;
+import com.cafeed28.vapeplugin.types.TypesManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,8 +21,8 @@ public class ShopCommand implements CommandExecutor {
     public final ArrayList<BaseLiquid> liquidTypes;
 
     public ShopCommand() {
-        vapeTypes = VapePlugin.getInstance().vapes;
-        liquidTypes = VapePlugin.getInstance().liquids;
+        vapeTypes = TypesManager.getVapes();
+        liquidTypes = TypesManager.getLiquids();
     }
 
     @Override
